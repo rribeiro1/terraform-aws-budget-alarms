@@ -4,17 +4,17 @@
   <img src="https://res.cloudinary.com/hy4kyit2a/f_auto,fl_lossy,q_70/learn/modules/aws-pricing-models-and-support/discover-the-aws-cost-management-tools/images/772fa4bfbbcdfdba154d61ff07845675_6-d-0-bf-664-3-d-02-4-ab-4-acd-4-da-095-d-1-e-1-ffe.png" width="60" alt="accessibility text">
 </p>
 
-Terraform module which creates budgets resources on AWS, it also creates a SNS topic where you can subscribe an email or lambda-function and receive the notification alarms.
+Terraform module that creates budget resources on AWS, also creates an SNS topic where you can subscribe to an email or lambda-function and receive the notification alarms.
 
 ## Usage
 
 ```hcl
 module "db" {
-  source  = "rribeiro1/budgets/aws"
-  version = "~> 2.0"
+  source  = "rribeiro1/budget-alarms/aws"
+  version = "0.0.2"
 
   account_name         = "Development"
-  account_budget_limit = "8000.0"
+  account_budget_limit = "5000.0"
 
   services = {
     S3 = {
@@ -32,7 +32,7 @@ module "db" {
 
 ## List of Services 
 
-> The list is not complete and new items can be added in next releases.
+> This list is not exhaustive, and new AWS services can be added in the future.
 
 | Service Key                 | Description                                        |
 |-----------------------------|----------------------------------------------------|
