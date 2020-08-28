@@ -48,6 +48,10 @@ resource "aws_sns_topic" "account_budgets_alarm_topic" {
   name = "account-budgets-alarm-topic"
 }
 
+resource "aws_sns_topic" "account_budgets_alarm_topic-2" {
+  name = "account-budgets-alarm-topic-2"
+}
+
 resource "aws_sns_topic_policy" "account_budgets_alarm_policy" {
   arn    = aws_sns_topic.account_budgets_alarm_topic.arn
   policy = data.aws_iam_policy_document.sns_topic_policy.json
