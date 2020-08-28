@@ -9,9 +9,9 @@ Terraform module that creates budget resources on AWS, also creates an SNS topic
 ## Usage
 
 ```hcl
-module "db" {
+module "budget_alarms" {
   source  = "rribeiro1/budget-alarms/aws"
-  version = "0.0.2"
+  version = "0.0.3"
 
   account_name         = "Development"
   account_budget_limit = "5000.0"
@@ -30,7 +30,37 @@ module "db" {
 }
 ```
 
-## List of Services 
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | ~> 0.12.6 |
+| aws | ~> 2.37 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| aws | ~> 2.37 |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| account\_budget\_limit | Specifies the budget limit for the account level | `string` | n/a | yes |
+| account\_name | Specifies the name of the account | `string` | `""` | no |
+| services | Map of AWS services to be monitored in terms of costs | <pre>map(object({<br>    budget_limit = string<br>  }))</pre> | n/a | yes |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| budget\_alarms\_sns\_topic\_arn | ARN identification of the budget alarms SNS topic. |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+## List of Services
 
 > This list is not exhaustive, and new AWS services can be added in the future.
 
@@ -84,3 +114,5 @@ Module managed by [Rafael Ribeiro](https://github.com/rribeiro1).
 ## License
 
 Apache 2 Licensed. See LICENSE for full details.
+
+
