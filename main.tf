@@ -55,7 +55,7 @@ resource "aws_sns_topic_policy" "account_budgets_alarm_policy" {
 
 data "aws_iam_policy_document" "sns_topic_policy" {
   statement {
-    sid = "AWSBudgetsSNSPublishingPermissions"
+    sid    = "AWSBudgetsSNSPublishingPermissions"
     effect = "Allow"
 
     actions = [
