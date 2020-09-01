@@ -4,6 +4,9 @@
   <img src="https://res.cloudinary.com/hy4kyit2a/f_auto,fl_lossy,q_70/learn/modules/aws-pricing-models-and-support/discover-the-aws-cost-management-tools/images/772fa4bfbbcdfdba154d61ff07845675_6-d-0-bf-664-3-d-02-4-ab-4-acd-4-da-095-d-1-e-1-ffe.png" width="60" alt="accessibility text">
 </p>
 
+![tfsec](https://github.com/rribeiro1/terraform-aws-budget-alarms/workflows/tfsec/badge.svg)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 Terraform module that creates budget resources on AWS, also creates an SNS topic where you can subscribe to an email or lambda-function and receive the notification alarms.
 
 ## Usage
