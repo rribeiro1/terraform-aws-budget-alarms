@@ -33,6 +33,18 @@ module "budget_alarms" {
 }
 ```
 
+## Doc generation
+
+Code formatting and documentation for variables and outputs are generated using [pre-commit-terraform hooks](https://github.com/antonbabenko/pre-commit-terraform) which uses [terraform-docs](https://github.com/segmentio/terraform-docs).
+
+Follow [these instructions](https://github.com/antonbabenko/pre-commit-terraform#how-to-install) to install pre-commit locally.
+
+And install `terraform-docs` with `go get github.com/segmentio/terraform-docs` or `brew install terraform-docs`.
+
+## Contributing
+
+Report issues/questions/feature requests on in the [issues](https://github.com/rribeiro1/terraform-aws-budget-alarms/issues/new) section.
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
