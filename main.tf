@@ -46,6 +46,10 @@ locals {
 
 resource "aws_sns_topic" "account_budgets_alarm_topic" {
   name = "account-budget-alarms-topic"
+
+  kms_master_key_id = "alias/aws/sns"
+
+  tags = var.tags
 }
 
 resource "aws_sns_topic_policy" "account_budgets_alarm_policy" {
@@ -78,18 +82,22 @@ resource "aws_budgets_budget" "budget_account" {
   name              = "${var.account_name} Account Monthly Budget"
   budget_type       = "COST"
   limit_amount      = var.account_budget_limit
-  limit_unit        = "USD"
-  time_unit         = "MONTHLY"
+  limit_unit        = var.budget_limit_unit
+  time_unit         = var.budget_time_unit
   time_period_start = "2020-01-01_00:00"
 
-  notification {
-    comparison_operator = "GREATER_THAN"
-    threshold           = 100
-    threshold_type      = "PERCENTAGE"
-    notification_type   = "ACTUAL"
-    subscriber_sns_topic_arns = [
-      aws_sns_topic.account_budgets_alarm_topic.arn
-    ]
+  dynamic "notification" {
+    for_each = var.notifications
+
+    content {
+      comparison_operator = notification.value.comparison_operator
+      threshold           = notification.value.threshold
+      threshold_type      = notification.value.threshold_type
+      notification_type   = notification.value.notification_type
+      subscriber_sns_topic_arns = [
+        aws_sns_topic.account_budgets_alarm_topic.arn
+      ]
+    }
   }
 
   depends_on = [
@@ -100,25 +108,29 @@ resource "aws_budgets_budget" "budget_account" {
 resource "aws_budgets_budget" "budget_resources" {
   for_each = var.services
 
-  name              = "${var.account_name} ${each.key} Monthly Budget"
+  name              = "${var.account_name} Account - ${each.key}"
   budget_type       = "COST"
   limit_amount      = each.value.budget_limit
-  limit_unit        = "USD"
-  time_unit         = "MONTHLY"
+  limit_unit        = var.budget_limit_unit
+  time_unit         = var.budget_time_unit
   time_period_start = "2020-01-01_00:00"
 
   cost_filters = {
     Service = lookup(local.aws_services, each.key)
   }
 
-  notification {
-    comparison_operator = "GREATER_THAN"
-    threshold           = 100
-    threshold_type      = "PERCENTAGE"
-    notification_type   = "ACTUAL"
-    subscriber_sns_topic_arns = [
-      aws_sns_topic.account_budgets_alarm_topic.arn
-    ]
+  dynamic "notification" {
+    for_each = var.notifications
+
+    content {
+      comparison_operator = notification.value.comparison_operator
+      threshold           = notification.value.threshold
+      threshold_type      = notification.value.threshold_type
+      notification_type   = notification.value.notification_type
+      subscriber_sns_topic_arns = [
+        aws_sns_topic.account_budgets_alarm_topic.arn
+      ]
+    }
   }
 
   depends_on = [
@@ -147,26 +159,6 @@ resource "aws_iam_role" "chatbot_notification" {
   })
 }
 
-resource "aws_iam_role_policy" "chatbot_notification" {
-  name = "ChatBotNotificationPolicy"
-  role = aws_iam_role.chatbot_notification.id
-
-  policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
-      {
-        Action: [
-          "cloudwatch:Describe*",
-          "cloudwatch:Get*",
-          "cloudwatch:List*"
-        ],
-        Effect: "Allow",
-        Resource: "*"
-      }
-    ]
-  })
-}
-
 resource "aws_cloudformation_stack" "chatbot_slack_configuration" {
   name = "chatbot-slack-budget-alarms"
 
@@ -175,7 +167,7 @@ resource "aws_cloudformation_stack" "chatbot_slack_configuration" {
   parameters = {
     ConfigurationNameParameter = "budget-alarms"
     IamRoleArnParameter        = aws_iam_role.chatbot_notification.arn
-    LoggingLevelParameter      = var.logging_level
+    LoggingLevelParameter      = "NONE"
     SlackChannelIdParameter    = var.slack_channel_id
     SlackWorkspaceIdParameter  = var.slack_workspace_id
     SnsTopicArnsParameter      = aws_sns_topic.account_budgets_alarm_topic.arn

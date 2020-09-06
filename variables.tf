@@ -9,6 +9,16 @@ variable "account_budget_limit" {
   type        = string
 }
 
+variable "budget_limit_unit" {
+  type = string
+  default = "USD"
+}
+
+variable "budget_time_unit" {
+  type = string
+  default = "MONTHLY"
+}
+
 variable "services" {
   description = "Map of AWS services to be monitored in terms of costs"
   type = map(object({
@@ -16,10 +26,14 @@ variable "services" {
   }))
 }
 
-variable "logging_level" {
-  type = string
-  description = "Specifies the logging level for this configuration. This property affects the log entries pushed to Amazon CloudWatch Logs. Logging levels include ERROR, INFO, or NONE."
-  default     = "ERROR"
+variable "notifications" {
+  description = "Map of notifications"
+  type = map(object({
+    comparison_operator = string
+    threshold = number
+    threshold_type = string
+    notification_type = string
+  }))
 }
 
 variable "slack_channel_id" {
