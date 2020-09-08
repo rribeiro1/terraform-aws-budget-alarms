@@ -48,15 +48,12 @@ variable "slack_workspace_id" {
   description = "The ID of the Slack workspace authorized with AWS Chatbot. To get the workspace ID, you must perform the initial authorization flow with Slack in the AWS Chatbot console. Then you can copy and paste the workspace ID from the console. For more details, see steps 1-4 in [Setting Up AWS Chatbot with Slack](https://docs.aws.amazon.com/chatbot/latest/adminguide/setting-up.html#Setup_intro) in the AWS Chatbot User Guide."
 }
 
-<<<<<<< HEAD
 variable "create_slack_integration" {
   type        = string
   description = "Whether to create the Slack integration through AWS Chatbot or not."
   default     = true
 }
 
-=======
->>>>>>> cd81824b92fb7205071ca00359ce4bd86412af10
 variable "tags" {
   type        = map(string)
   default     = {}

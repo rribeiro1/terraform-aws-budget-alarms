@@ -7,7 +7,7 @@
 ![tfsec](https://github.com/rribeiro1/terraform-aws-budget-alarms/workflows/tfsec/badge.svg)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Terraform module that creates budget resources on AWS, also creates an SNS topic where you can subscribe to an email or lambda-function and receive the notification alarms.
+Terraform module that creates AWS Budgets for your resources on AWS and through the AWS Chatbot integration, enables you to receive the alerts directly into your designated Slack channel.
 
 ## Features
 
@@ -107,12 +107,12 @@ Report issues/questions/feature requests on in the [issues](https://github.com/r
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| account\_budget\_limit | Specifies the budget limit for the AWS account | `string` | n/a | yes |
+| account\_budget\_limit | Set the budget limit for the AWS account | `string` | n/a | yes |
 | account\_name | Specifies the name of the AWS account | `string` | `""` | no |
 | budget\_limit\_unit | The unit of measurement used for the budget forecast, actual spend, or budget threshold. | `string` | `"USD"` | no |
 | budget\_time\_unit | The length of time until a budget resets the actual and forecasted spend. Valid values: `MONTHLY`, `QUARTERLY`, `ANNUALLY`. | `string` | `"MONTHLY"` | no |
-| create\_slack\_integration | (optional) describe your variable | `string` | `true` | no |
-| notifications | Can be used multiple times to configure budget notification | <pre>map(object({<br>    comparison_operator = string<br>    threshold           = number<br>    threshold_type      = string<br>    notification_type   = string<br>  }))</pre> | n/a | yes |
+| create\_slack\_integration | Whether to create the Slack integration through AWS Chatbot or not. | `string` | `true` | no |
+| notifications | Can be used multiple times to configure budget notification thresholds | <pre>map(object({<br>    comparison_operator = string<br>    threshold           = number<br>    threshold_type      = string<br>    notification_type   = string<br>  }))</pre> | n/a | yes |
 | services | Define the list of services and their limit of budget | <pre>map(object({<br>    budget_limit = string<br>  }))</pre> | n/a | yes |
 | slack\_channel\_id | The ID of the Slack channel. To get the ID, open Slack, right click on the channel name in the left pane, then choose Copy Link. The channel ID is the 9-character string at the end of the URL. For example, ABCBBLZZZ. | `string` | n/a | yes |
 | slack\_workspace\_id | The ID of the Slack workspace authorized with AWS Chatbot. To get the workspace ID, you must perform the initial authorization flow with Slack in the AWS Chatbot console. Then you can copy and paste the workspace ID from the console. For more details, see steps 1-4 in [Setting Up AWS Chatbot with Slack](https://docs.aws.amazon.com/chatbot/latest/adminguide/setting-up.html#Setup_intro) in the AWS Chatbot User Guide. | `string` | n/a | yes |
