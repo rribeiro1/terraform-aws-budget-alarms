@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://res.cloudinary.com/hy4kyit2a/f_auto,fl_lossy,q_70/learn/modules/aws-pricing-models-and-support/discover-the-aws-cost-management-tools/images/772fa4bfbbcdfdba154d61ff07845675_6-d-0-bf-664-3-d-02-4-ab-4-acd-4-da-095-d-1-e-1-ffe.png" width="60" alt="accessibility text">
+  <img src="/assets/budget-alarms.png" width="60">
 </p>
 
 # AWS Budget Alarms
