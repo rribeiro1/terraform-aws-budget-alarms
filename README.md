@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/assets/budget-alarms.png" width="240">
+  <img src="/assets/budget-alarms.png" width="480">
 </p>
 
 # AWS Budget Alarms
