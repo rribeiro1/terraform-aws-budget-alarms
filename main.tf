@@ -141,6 +141,8 @@ data "local_file" "cloudformation_template" {
 }
 
 resource "aws_iam_role" "chatbot_notification" {
+  count = var.create_slack_integration == true ? 1 : 0
+
   name = "ChatBotNotificationRole"
 
   assume_role_policy = jsonencode({
@@ -158,8 +160,10 @@ resource "aws_iam_role" "chatbot_notification" {
 }
 
 resource "aws_iam_role_policy" "chatbot_notification" {
+  count = var.create_slack_integration == true ? 1 : 0
+
   name = "ChatBotNotificationPolicy"
-  role = aws_iam_role.chatbot_notification.id
+  role = aws_iam_role.chatbot_notification[0].id
 
   policy = jsonencode({
     "Version" : "2012-10-17",
@@ -178,13 +182,15 @@ resource "aws_iam_role_policy" "chatbot_notification" {
 }
 
 resource "aws_cloudformation_stack" "chatbot_slack_configuration" {
+  count = var.create_slack_integration == true ? 1 : 0
+
   name = "chatbot-slack-budget-alarms"
 
   template_body = data.local_file.cloudformation_template.content
 
   parameters = {
     ConfigurationNameParameter = "budget-alarms"
-    IamRoleArnParameter        = aws_iam_role.chatbot_notification.arn
+    IamRoleArnParameter        = aws_iam_role.chatbot_notification[0].arn
     SlackChannelIdParameter    = var.slack_channel_id
     SlackWorkspaceIdParameter  = var.slack_workspace_id
     SnsTopicArnsParameter      = aws_sns_topic.account_budgets_alarm_topic.arn
