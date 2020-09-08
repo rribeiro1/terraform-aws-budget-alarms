@@ -5,7 +5,7 @@ variable "account_name" {
 }
 
 variable "account_budget_limit" {
-  description = "Specifies the budget limit for the AWS account"
+  description = "Set the budget limit for the AWS account"
   type        = string
 }
 
@@ -22,14 +22,14 @@ variable "budget_time_unit" {
 }
 
 variable "services" {
-  description = "Define the list of services and their limit of budget"
+  description = "List of services to be monitored and their budget limit."
   type = map(object({
     budget_limit = string
   }))
 }
 
 variable "notifications" {
-  description = "Can be used multiple times to configure budget notification"
+  description = "Can be used multiple times to configure budget notification thresholds"
   type = map(object({
     comparison_operator = string
     threshold           = number
@@ -46,6 +46,12 @@ variable "slack_channel_id" {
 variable "slack_workspace_id" {
   type        = string
   description = "The ID of the Slack workspace authorized with AWS Chatbot. To get the workspace ID, you must perform the initial authorization flow with Slack in the AWS Chatbot console. Then you can copy and paste the workspace ID from the console. For more details, see steps 1-4 in [Setting Up AWS Chatbot with Slack](https://docs.aws.amazon.com/chatbot/latest/adminguide/setting-up.html#Setup_intro) in the AWS Chatbot User Guide."
+}
+
+variable "create_slack_integration" {
+  type        = string
+  description = "Whether to create the Slack integration through AWS Chatbot or not."
+  default     = true
 }
 
 variable "tags" {
