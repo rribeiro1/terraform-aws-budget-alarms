@@ -1,6 +1,6 @@
 provider "aws" {
-  version    = "~> 2.66"
-  region     = "eu-central-1"
+  version = "~> 2.66"
+  region  = "eu-central-1"
 }
 
 module "budget_alerts" {
@@ -27,15 +27,15 @@ module "budget_alerts" {
   notifications = {
     warning = {
       comparison_operator = "GREATER_THAN"
-      threshold = 100
-      threshold_type = "PERCENTAGE"
-      notification_type = "ACTUAL"
+      threshold           = 100
+      threshold_type      = "PERCENTAGE"
+      notification_type   = "ACTUAL"
     },
     critical = {
       comparison_operator = "GREATER_THAN"
-      threshold = 110
-      threshold_type = "PERCENTAGE"
-      notification_type = "ACTUAL"
+      threshold           = 110
+      threshold_type      = "PERCENTAGE"
+      notification_type   = "ACTUAL"
     }
   }
 

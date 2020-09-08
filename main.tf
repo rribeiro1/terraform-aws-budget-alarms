@@ -144,14 +144,14 @@ resource "aws_iam_role" "chatbot_notification" {
   name = "ChatBotNotificationRole"
 
   assume_role_policy = jsonencode({
-    Version: "2012-10-17",
-    Statement: [
+    Version : "2012-10-17",
+    Statement : [
       {
-        Effect: "Allow",
-        Principal: {
-          Service: "chatbot.amazonaws.com"
+        Effect : "Allow",
+        Principal : {
+          Service : "chatbot.amazonaws.com"
         },
-        Action: "sts:AssumeRole"
+        Action : "sts:AssumeRole"
       }
     ]
   })
@@ -162,16 +162,16 @@ resource "aws_iam_role_policy" "chatbot_notification" {
   role = aws_iam_role.chatbot_notification.id
 
   policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        Action: [
+        Action : [
           "cloudwatch:Describe*",
           "cloudwatch:Get*",
           "cloudwatch:List*"
         ],
-        Effect: "Allow",
-        Resource: "*"
+        Effect : "Allow",
+        Resource : "*"
       }
     ]
   })
