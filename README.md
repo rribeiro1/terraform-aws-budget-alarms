@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/assets/cover.png" width="200">
+  <img src="https://raw.githubusercontent.com/rribeiro1/terraform-aws-budget-alarms/master/assets/cover.png" width="200">
 </p>
 
 # AWS Budget Alarms
@@ -32,7 +32,10 @@ Open Slack, right click on the channel name in the left pane, then choose Copy L
 A full example is contained in the [examples](/examples) directory.
 
 ```hcl
-module "budget_alarms" {
+module "budget-alarms" {
+  source  = "rribeiro1/budget-alarms/aws"
+  version = "0.0.6"
+
   account_name         = "Development"
   account_budget_limit = 100.5
 
