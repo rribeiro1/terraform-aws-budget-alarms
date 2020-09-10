@@ -9,6 +9,8 @@
 
 Terraform module that creates AWS Budgets for your resources on AWS and through the AWS Chatbot integration, enables you to receive the alerts directly into your designated Slack channel.
 
+The module is published on [Terraform Registry](https://registry.terraform.io/modules/rribeiro1/budget-alarms)
+
 ## Features
 
 - [x] Send budget alerts to Slack through the AWS Chatbot integration.
