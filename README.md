@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/assets/cover.png" width="200">
+  <img src="https://raw.githubusercontent.com/rribeiro1/terraform-aws-budget-alarms/master/assets/cover.png" width="200">
 </p>
 
 # AWS Budget Alarms
@@ -8,6 +8,8 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Terraform module that creates AWS Budgets for your resources on AWS and through the AWS Chatbot integration, enables you to receive the alerts directly into your designated Slack channel.
+
+The module is published on [Terraform Registry](https://registry.terraform.io/modules/rribeiro1/budget-alarms)
 
 ## Features
 
@@ -32,7 +34,10 @@ Open Slack, right click on the channel name in the left pane, then choose Copy L
 A full example is contained in the [examples](/examples) directory.
 
 ```hcl
-module "budget_alarms" {
+module "budget-alarms" {
+  source  = "rribeiro1/budget-alarms/aws"
+  version = "0.0.6"
+
   account_name         = "Development"
   account_budget_limit = 100.5
 
