@@ -96,16 +96,13 @@ Report issues/questions/feature requests on in the [issues](https://github.com/r
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-| Name | Version |
-|------|---------|
-| terraform | ~> 0.12.6 |
-| aws | ~> 2.37 |
+No requirements.
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | ~> 2.37 |
+| aws | n/a |
 | local | n/a |
 
 ## Inputs
@@ -116,7 +113,7 @@ Report issues/questions/feature requests on in the [issues](https://github.com/r
 | account\_name | Specifies the name of the AWS account | `string` | `""` | no |
 | budget\_limit\_unit | The unit of measurement used for the budget forecast, actual spend, or budget threshold. | `string` | `"USD"` | no |
 | budget\_time\_unit | The length of time until a budget resets the actual and forecasted spend. Valid values: `MONTHLY`, `QUARTERLY`, `ANNUALLY`. | `string` | `"MONTHLY"` | no |
-| create\_slack\_integration | Whether to create the Slack integration through AWS Chatbot or not. | `string` | `true` | no |
+| create\_slack\_integration | Whether to create the Slack integration through AWS Chatbot or not. | `bool` | `true` | no |
 | notifications | Can be used multiple times to configure budget notification thresholds | <pre>map(object({<br>    comparison_operator = string<br>    threshold           = number<br>    threshold_type      = string<br>    notification_type   = string<br>  }))</pre> | n/a | yes |
 | services | Define the list of services and their limit of budget | <pre>map(object({<br>    budget_limit = string<br>  }))</pre> | n/a | yes |
 | slack\_channel\_id | The ID of the Slack channel. To get the ID, open Slack, right click on the channel name in the left pane, then choose Copy Link. The channel ID is the 9-character string at the end of the URL. For example, ABCBBLZZZ. | `string` | n/a | yes |
