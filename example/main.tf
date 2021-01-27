@@ -1,5 +1,5 @@
 provider "aws" {
-  version = "~> 2.66"
+  version = "= 3.25.0"
   region  = "eu-central-1"
 }
 
@@ -12,15 +12,6 @@ module "budget_alerts" {
   services = {
     Route53 = {
       budget_limit = 0.25
-    },
-    EC2 = {
-      budget_limit = 50.25
-    },
-    S3 = {
-      budget_limit = 12.35
-    },
-    ECR = {
-      budget_limit = 10.4
     }
   }
 

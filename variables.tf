@@ -49,7 +49,7 @@ variable "slack_workspace_id" {
 }
 
 variable "create_slack_integration" {
-  type        = string
+  type        = bool
   description = "Whether to create the Slack integration through AWS Chatbot or not."
   default     = true
 }
