@@ -36,7 +36,7 @@ A full example is contained in the [examples](/examples) directory.
 ```hcl
 module "budget-alarms" {
   source  = "rribeiro1/budget-alarms/aws"
-  version = "0.0.6"
+  version = "0.0.7" # verify the last version in the terraform registry
 
   account_name         = "Development"
   account_budget_limit = 100.5
