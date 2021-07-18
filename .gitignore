@@ -3,3 +3,5 @@ terraform.tfstate
 *.tfstate*
 terraform.tfvars
 .idea/
+.kitchen
+.terraform.lock.hcl
