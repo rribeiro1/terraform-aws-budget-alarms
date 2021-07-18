@@ -1,0 +1,15 @@
+name: default
+title: InSpec Profile for AWS Budget Alarms module
+maintainer: Rafael Ribeiro - rafael.pr10@gmail.com
+summary: Test components created by the terraform-aws-budget-alarms module.
+inspec_version: '>= 4.22.1'
+attributes:
+  - name: budgets_topic_arn
+    required: true
+    description: SNS topic for the budgets
+    type: String
+depends:
+  - name: inspec-aws
+    git: git@github.com:inspec/inspec-aws.git
+supports:
+  - platform: aws

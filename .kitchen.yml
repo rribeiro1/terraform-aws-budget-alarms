@@ -1,0 +1,19 @@
+driver:
+  name: terraform
+  root_module_directory: examples
+  command_timeout: 300
+
+provisioner:
+  name: terraform
+
+verifier:
+  name: terraform
+  systems:
+    - name: local
+      backend: aws
+
+platforms:
+  - name: terraform
+
+suites:
+  - name: default
