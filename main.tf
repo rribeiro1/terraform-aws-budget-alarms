@@ -114,7 +114,10 @@ resource "aws_budgets_budget" "budget_resources" {
   time_period_start = "2020-01-01_00:00"
 
   cost_filter = {
-    Service = lookup(local.aws_services, each.key)
+    name = "Service"
+    values = [
+      lookup(local.aws_services, each.key)
+    ]
   }
 
   dynamic "notification" {
