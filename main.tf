@@ -18,7 +18,7 @@ locals {
     ELB            = "Amazon Elastic Load Balancing"
     Gateway        = "Amazon API Gateway"
     Glue           = "AWS Glue"
-    Kafka          = "Managed Streaming for Apache Kafka"
+    Kafka          = "Amazon Managed Streaming for Apache Kafka"
     KMS            = "AWS Key Management Service"
     Kinesis        = "Amazon Kinesis"
     Lambda         = "AWS Lambda"
